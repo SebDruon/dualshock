@@ -15,7 +15,7 @@ createEnv:
 dualshock.o: dualshock.c
 	    $(CC) -g -o $(BUILDDIR)/$@ -c $< $(CFLAGS) $(LIBFLAG)
 
-main.o: main.c dualshock.h.h
+main.o: main.c
 	    $(CC) -g -o $(BUILDDIR)/$@ -c $< $(CFLAGS) $(LIBFLAG)
 clean: 
 	    rm -rf $(BUILDDIR) $(EXEC)
