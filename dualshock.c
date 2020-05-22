@@ -65,7 +65,11 @@ void dualshock_free( dualshock_t* shock ) {
     free ( shock ) ;
 }
 
+void dualshock_process_events( dualshock_t* shock ) {
 
+
+
+}
 
 
 
