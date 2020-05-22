@@ -68,6 +68,21 @@ void dualshock_free( dualshock_t* shock ) {
 void dualshock_process_events( dualshock_t* shock ) {
 
 
+    struct input_event e1 ;
+    struct input_event e2 ;
+    struct input_event e3 ;
+
+    read (shock->fd_joystick, &e1, sizeof(e1)) ;
+            switch( e1.type ) {
+                case EV_SYN:
+                        break ;
+                case EV_ABS:
+                        shock->joystick_axis_fct( e1.code, e1.value ) ;
+			            break ;
+                case EV_KEY:
+                        shock->joystick_key_fct( e1.code, e1.value ) ;
+                        break ;
+            }
 
 }
 

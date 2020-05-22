@@ -8,7 +8,11 @@ void touchpad_axis_callback  ( int axis, int value ) ;
 void accelero_axis_callback  ( int axis, int value ) ;
 
 void joystick_key_callback  ( int code, int value ) {
-    printf("Bouton \n") ;
+    if ( value == 0 )
+        printf("Bouton %d relaché \n", code ) ;
+    else
+        printf("Bouton %d pressé  \n", code ) ;
+
     return ;
 }   
 

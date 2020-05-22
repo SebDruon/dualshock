@@ -1,6 +1,21 @@
 #ifndef DUALSHOCK_H
 #define DUALSHOCK_H
 
+#define PS4_BTN_CROIX               304
+#define PS4_BTN_CARRE               308
+#define PS4_BTN_TRIANGLE            307
+#define PS4_BTN_ROND                305
+#define PS4_BTN_L1                  310
+#define PS4_BTN_L2                  312
+#define PS4_BTN_R1                  311
+#define PS4_BTN_R2                  313
+#define PS4_BTN_PLAYSTATION         316
+#define PS4_BTN_SHARE               314     
+#define PS4_BTN_OPTION              315
+#define PS4_BTN_ANALOG_L            317
+#define PS4_BTN_ANALOG_R            318
+
+
 typedef struct {
 
     int fd_touchpad ;
@@ -8,7 +23,7 @@ typedef struct {
     int fd_joystick ;
 
     void (*joystick_key_fct)   ( int code, int value ) ;
-    void (*joystick_axis_fct) ( int axis, int value ) ;
+    void (*joystick_axis_fct)  ( int axis, int value ) ;
     void (*touchpad_key_fct)   ( int code, int value ) ;
     void (*touchpad_axis_fct)  ( int axis, int value ) ;
     void (*accelero_axis_fct)  ( int axis, int value ) ;
