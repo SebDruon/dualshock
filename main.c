@@ -37,14 +37,15 @@ int main( int argc, char** argv, char** envv ) {
 
     dualshock_t* manette ;
 
-    manette = dualshock_new( ) ;
+    manette = dualshock_new( "/dev/input/event23",        // joystick
+                             "/dev/input/event21",        // touchpad
+                             "/dev/input/event22"  ) ;    // accelero
 
     manette->joystick_key_fct = joystick_key_callback ;
     manette->joystick_axis_fct = joystick_axis_callback ;
     manette->touchpad_key_fct = touchpad_key_callback ;
     manette->touchpad_axis_fct = joystick_axis_callback ;
     manette->accelero_axis_fct = accelero_axis_callback ;
-
 
     done = 0 ;
     while (!done ) {
@@ -53,8 +54,7 @@ int main( int argc, char** argv, char** envv ) {
 
     }
 
-
-    dualshock_delete( manette ) ;
+    dualshock_free( manette ) ;
 
     return 0 ;
 

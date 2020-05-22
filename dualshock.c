@@ -1,5 +1,18 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>                     // TODO A approfondir
+
 #include <linux/types.h>
 #include <linux/input.h>
+
+#include "dualshock.h"
+
+void default_callback( int A, int B ) {
+    return ;
+}
 
 
 dualshock_t* dualshock_new( const char* joystick,
@@ -14,26 +27,43 @@ dualshock_t* dualshock_new( const char* joystick,
         return NULL ;
     }
 
-    fd_touchpad = open( touchpad, O_RDONLY ) ;
-    if ( fd_touchpad == -1 ) {
-        fprintf("Erreur d'accès au touchpad : %s\n", touchpad ) ;
+    shock->fd_touchpad = open( touchpad, O_RDONLY ) ;
+    if ( shock->fd_touchpad == -1 ) {
+        fprintf(stderr,"Erreur d'accès au touchpad : %s\n", touchpad ) ;
         return NULL ;
     }
 
-    fd_accelero = open( accelero, O_RDONLY ) ;
+    shock->fd_accelero = open( accelero, O_RDONLY ) ;
+    if ( shock->fd_accelero == -1 ) {
+        fprintf(stderr,"Erreur d'accès a l'accelero : %s\n", accelero ) ;
+        return NULL ;
+    }
     
-    fd_joystick = open( joystick, O_RDONLY ) ;
+    shock->fd_joystick = open( joystick, O_RDONLY ) ;
+    if ( shock->fd_joystick == -1 ) {
+        fprintf(stderr,"Erreur d'accès au joystick : %s\n", joystick ) ;
+        return NULL ;
+    }
 
-
-
-
+    shock->joystick_key_fct = default_callback ;
+    shock->joystick_axis_fct = default_callback ;
+    shock->touchpad_key_fct = default_callback ;
+    shock->touchpad_axis_fct = default_callback ;
+    shock->accelero_axis_fct = default_callback ;
+    
+    return shock ;
 
 }
 
 
+void dualshock_free( dualshock_t* shock ) {
 
+    close( shock->fd_touchpad ) ;
+    close( shock->fd_accelero ) ;
+    close( shock->fd_joystick ) ;
 
-
+    free ( shock ) ;
+}
 
 
 
