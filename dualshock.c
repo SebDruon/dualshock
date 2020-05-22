@@ -84,45 +84,77 @@ void dualshock_process_events( dualshock_t* shock ) {
                         break ;
             }
 
-}
-
-
-
-
-
-
-
-
-/*
-    struct input_event e ;
-    int fd ;
-
-    fd = open( "/dev/input/event22", O_RDONLY ) ;
-
-    while(1) {
-
-        while (read (fd, &e, sizeof(e)) > 0) {
-           
-            switch( e.type ) {
-            
+    read (shock->fd_touchpad, &e2, sizeof(e2)) ;
+            switch( e2.type ) {
                 case EV_SYN:
                         break ;
                 case EV_ABS:
-                        if ( e.code == 3 ) 
-                            printf("Axe %hi : %d \n", e.code, e.value ) ;
-			break ;
-                case EV_KEY:
-                        printf("Bouton %hi : %d \n", e.code, e.value ) ;
-                        
+                        shock->touchpad_axis_fct( e2.code, e2.value ) ;
                         break ;
-
+                case EV_KEY:
+                        shock->touchpad_key_fct( e2.code, e2.value ) ;
+                        break ;
             }
+}
 
-        }    
 
-        if (errno != EAGAIN ) {
-            printf("Error\n") ;
-        }
+void dualshock_get_button_name( char* name, int code ) {
+    switch (code) {
+        case PS4_BTN_CROIX:             
+            sprintf( name, "Croix" ) ;
+            break ;
+        case PS4_BTN_CARRE:             
+            sprintf( name, "Carré" ) ;
+            break ;
+        case PS4_BTN_TRIANGLE:          
+            sprintf( name, "Triangle" ) ;
+            break ;
+        case PS4_BTN_ROND:              
+            sprintf( name, "Rond" ) ;
+            break ;
+        case PS4_BTN_L1:                
+            sprintf( name, "L1" ) ;
+            break ;
+        case PS4_BTN_L2:                
+            sprintf( name, "L2" ) ;
+            break ;
+        case PS4_BTN_R1:                
+            sprintf( name, "R1" ) ;
+            break ;
+        case PS4_BTN_R2:                
+            sprintf( name, "R2" ) ;
+            break ;
+        case PS4_BTN_PLAYSTATION:       
+            sprintf( name, "Playstation" ) ;
+            break ;
+        case PS4_BTN_SHARE:             
+            sprintf( name, "Share" ) ;
+            break ;
+        case PS4_BTN_OPTION:            
+            sprintf( name, "Option" ) ;
+            break ;
+        case PS4_BTN_ANALOG_L:          
+            sprintf( name, "Joytick Analgique Gauche" ) ;
+            break ;
+        case PS4_BTN_ANALOG_R:
+            sprintf( name, "Joystick Analogique Droite" ) ;
+            break ;
+        case PS4_TOUCHPAD_BTN_FINGER:
+            sprintf( name, "Contact 1 doigt" ) ;
+            break ;
+        case PS4_TOUCHPAD_BTN_2FINGERS:
+            sprintf( name, "Contact 2 doigts" ) ;
+            break ;
+        case PS4_TOUCHPAD_BTN_CONTACT:
+            sprintf( name, "Contact" ) ;
+            break ;
+        case PS4_TOUCHPAD_BTN_PRESS:
+            sprintf( name, "Click" ) ;
+            break ;
+        default:
+            sprintf( name, "Bouton inconnu !!!!!!!" ) ;
+            break ;
 
     }
-    */
+
+}

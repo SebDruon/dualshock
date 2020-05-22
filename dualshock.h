@@ -14,7 +14,10 @@
 #define PS4_BTN_OPTION              315
 #define PS4_BTN_ANALOG_L            317
 #define PS4_BTN_ANALOG_R            318
-
+#define PS4_TOUCHPAD_BTN_FINGER     325
+#define PS4_TOUCHPAD_BTN_2FINGERS   333
+#define PS4_TOUCHPAD_BTN_CONTACT    330
+#define PS4_TOUCHPAD_BTN_PRESS      272
 
 typedef struct {
 
@@ -46,5 +49,9 @@ typedef struct {
 dualshock_t* dualshock_new ( const char* joystick, const char* touchpad, const char* accelero ) ;
 void dualshock_free ( dualshock_t* ) ;
 void dualshock_process_events( dualshock_t*) ;
+
+void dualshock_get_button_name( char* name, int code )  ;
+
+
 
 #endif
