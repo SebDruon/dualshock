@@ -1,0 +1,7 @@
+#ifndef DUALSHOCK_CONFIG_H
+#define DUALSHOCK_CONFIG_H
+
+#define VERSION_MAJOR @dualshock_VERSION_MAJOR@
+#define VERSION_MINOR @dualshock_VERSION_MINOR@
+
+#endif

@@ -1,0 +1,16 @@
+# - Config file for the dualshock lib
+# It defines the following variables
+#
+#  CYAN_INCLUDE_DIRS - include directories
+#  CYAN_LIBRARY_DIR  - library directory (normally not used!)
+#  CYAN_LIBRARIES    - libraries to link against
+ 
+# Tell the user project where to find our headers and librarie
+#FIND_PACKAGE_MESSAGE( dualshock "Found dualshock @dualshock_VERSION_STRING@ at ${DUALSHOCK_LIBRARY}"
+##	"[${DUALSHOCK_LIBRARY}][${DUALSHOCK_INCLUDE_DIR}]" )
+#	FIND_PACKAGE_MESSAGE(dualshock "Found dualshock @dualshock_VERSION_STRING@" "[${DUALSHOCK_LIBRARY}][${DUALSHOCK_INCLUDE_DIR}]" )
+
+set(DUALSHOCK_INCLUDE_DIR "@INSTALL_HEADERS_PATH@" )
+set(DUALSHOCK_LIBRARY_DIR  "@INSTALL_LIB_PATH@/dualshock")
+set(DUALSHOCK_LIBRARY    dualshock )
+    
