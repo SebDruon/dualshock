@@ -14,10 +14,20 @@
 #define PS4_BTN_OPTION              315
 #define PS4_BTN_ANALOG_L            317
 #define PS4_BTN_ANALOG_R            318
-#define PS4_TOUCHPAD_BTN_FINGER     325
-#define PS4_TOUCHPAD_BTN_2FINGERS   333
-#define PS4_TOUCHPAD_BTN_CONTACT    330
-#define PS4_TOUCHPAD_BTN_PRESS      272
+
+#define PS4_BTN_FINGER     325
+#define PS4_BTN_2FINGERS   333
+#define PS4_BTN_CONTACT    330
+#define PS4_BTN_PRESS      272
+#define PS4_ABS_X            0
+#define PS4_ABS_Y            1
+#define PS4_ABS_Z            2
+#define PS4_ABS_RX           3
+#define PS4_ABS_RY           4
+#define PS4_ABS_RZ           5
+
+#define PS4_MT_POSITION_X   53
+#define PS4_MT_POSITION_Y   54
 
 typedef struct {
 
