@@ -1,21 +1,15 @@
 CC=gcc
-CFLAGS=-Wall
+CFLAGS= -g -Wall -I/usr/local/include
+LD_FLAGS= -L/usr/local/lib -ldualshock
 EXEC=test
-BUILDDIR= build
 
 all:dualshock
 
-dualshock: createEnv dualshock.o main.o
-	    $(CC) -g -o $(EXEC)  build/dualshock.o build/main.o $(CFLAGS) $(LIBFLAG)
-
-createEnv:
-	    mkdir -p $(BUILDDIR)
-
-
-dualshock.o: dualshock.c
-	    $(CC) -g -o $(BUILDDIR)/$@ -c $< $(CFLAGS) $(LIBFLAG)
+dualshock: main.o
+	    $(CC) -o $(EXEC) main.o $(LD_FLAGS)
 
 main.o: main.c
-	    $(CC) -g -o $(BUILDDIR)/$@ -c $< $(CFLAGS) $(LIBFLAG)
+	    $(CC) $(CFLAGS) -c $<
 clean: 
-	    rm -rf $(BUILDDIR) $(EXEC)
+	    rm -rf $(EXEC)
+	    rm -rf *.o

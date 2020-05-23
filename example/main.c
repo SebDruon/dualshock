@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "dualshock.h"
+#include "dualshock/dualshock.h"
 
 void btn_callback  ( int code, int value ) ;
 void joystick_axis_callback ( int axis, int value ) ;
